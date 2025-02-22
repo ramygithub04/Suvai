@@ -22,8 +22,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      {/* Navbar */}
-      <header className="navbar">SUVAI</header>
+      
 
       {/* Hero Section */}
       <div className="hero-section">

@@ -32,9 +32,9 @@ body {
 
 /* Hero Section */
 .hero-section {
-    background: url('background-image.avif') center/cover no-repeat;
+    background: url('background.avif') center/cover ;
     height: 250px;
-    width: 100%;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,18 +47,22 @@ body {
     font-style: italic;
     font-weight: bold;
     color: white;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(176, 106, 7, 0.7);
     padding: 10px 20px;
     border-radius: 5px;
     text-align: center;
+    margin-top: 10%;
 }
 
 /* Explore Section */
 .Explore {
     margin: 30px 0;
-    font-size: 20px;
+    font-size: 40px;
     font-weight: bold;
     text-align: center;
+    color: black;
+    font-style: italic;
+
 }
 
 /* Restaurant Section */

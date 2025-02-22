@@ -1,90 +1,77 @@
-/* Reset Default Margins & Padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Navbar Container */
-  .navbar {
-    background: linear-gradient(to right, #ff8c00, #ff3c00); /* Beautiful Gradient */
-    padding: 15px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Inner Container */
-  .navbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-    max-width: 1200px;
-  }
-  
-  /* Logo (Left) */
-  .logo img {
-    height: 50px;
-    width: auto;
-  }
-  
-  /* Brand Name (Center) */
-  .brand-name {
-    font-size: 28px;
-    font-weight: bold;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  
-  /* Navigation Links (Right) */
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-  }
-  
-  .nav-links li {
-    display: inline-block;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: 0.3s;
-  }
-  
-  /* Hover Effect */
-  .nav-links a:hover {
-    background: white;
-    color: #ff3c00;
-  }
-  
-  /* Responsive for Mobile */
-  @media (max-width: 768px) {
-    .navbar-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .nav-links {
-      margin-top: 10px;
-      gap: 15px;
-    }
-  
-    .brand-name {
-      font-size: 24px;
-    }
-  }
-  
+.navbar {
+  background: linear-gradient(to right, #ff8000, #ff3300); /* Gradient */
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.logo {
+  margin-right: 15px;
+}
+
+.nav-logo {
+  width: 50px; /* Set uniform size */
+  height: 50px;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  align-items: center;
+  margin-left: 38%;
+  margin-right: 20%;
+}
+
+/* Remove default list styling */
+.nav-links {
+  list-style: none; /* Fix black dot issue */
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Home & About Us buttons styling */
+.nav-links a, .nav-btn {
+  background: white;
+  color: black;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  min-width: 100px; /* Ensures consistency while allowing text adjustment */
+  height: 40px; /* Uniform height */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+.nav-links a:hover, .nav-btn:hover {
+  background: lightgray;
+}
+
+/* Centering SUVAI word */
+.navbar-brand {
+  flex: 1;  /* Takes available space */
+  text-align: center; /* Centers the text */
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+}
+
+
+
