@@ -18,8 +18,8 @@
 }
 
 .nav-logo {
-  width: 50px; /* Set uniform size */
-  height: 50px;
+  width: 70px; /* Set uniform size */
+  height: 70px;
   object-fit: contain;
 }
 
@@ -29,7 +29,7 @@
   color: white;
   align-items: center;
   margin-left: 38%;
-  margin-right: 20%;
+  margin-right: 18%;
 }
 
 /* Remove default list styling */
