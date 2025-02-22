@@ -1,0 +1,157 @@
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers all content */
+    justify-content: center;
+}
+
+/* Navbar */
+.navbar {
+    background-color: white;
+    padding: 15px 30px;
+    font-size: 24px;
+    font-weight: bold;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center; /* Center Navbar */
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('background-image.avif') center/cover no-repeat;
+    height: 250px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 70px; /* Space from navbar */
+}
+
+.quote {
+    font-size: 22px;
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Explore Section */
+.Explore {
+    margin: 30px 0;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Restaurant Section */
+.restaurant-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Navigation Buttons */
+.nav-button {
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    width: 40px; /* Square button */
+    height: 40px;
+    text-align: center;
+    border-radius: 5px;
+    /* transition: background 0.3s; */
+}
+
+.nav-button:hover {
+    background-color: #bbb;
+}
+
+/* Left button */
+.left-btn {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Right button */
+.right-btn {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Restaurant List */
+.restaurant-list {
+    display: flex;
+    gap: 20px;
+    width: 80%;
+    justify-content: center;
+}
+
+/* Individual Restaurant Card */
+.restaurant-card {
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 250px; /* Uniform size */
+    height: 350px; /* Uniform size */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Uniform Image Size */
+.restaurant-card img {
+    width: 220px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Restaurant Name */
+.restaurant-card h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Location Text */
+.restaurant-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Center Alignment Fix */
+.home-container {
+    text-align: center;
+    width: 100%;
+    padding-top: 80px;
+}
