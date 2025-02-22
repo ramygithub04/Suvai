@@ -1,13 +1,11 @@
-/* Full-screen center alignment */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to right, #ff416c, #ff4b2b); /* Vibrant gradient */
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
    }
 
-/* Styling the form */
 form {
   background: white;
   padding: 30px;
@@ -16,12 +14,10 @@ form {
   width: 350px;
 }
 
-/* Styling form groups */
 .form-group {
   margin-bottom: 15px;
 }
 
-/* Input fields */
 .form-control {
   width: 100%;
   padding: 10px;
@@ -30,19 +26,16 @@ form {
   font-size: 16px;
 }
 
-/* Label styling */
 label {
   font-weight: bold;
   color: #333;
 }
 
-/* Small text below email field */
 .form-text {
   font-size: 12px;
   color: #666;
 }
 
-/* Checkbox styling */
 .form-check {
   display: flex;
   align-items: center;
@@ -50,7 +43,6 @@ label {
   margin-bottom: 15px;
 }
 
-/* Submit button */
 .btn-primary {
   width: 100%;
   background: #ff4b2b;

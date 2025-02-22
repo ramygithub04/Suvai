@@ -1,15 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 const Register = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
   return (
     <div>
       <form onSubmit={(e) => {
-        e.preventDefault(); // Prevent page refresh
-        navigate("/home"); // Navigate to home page
+        e.preventDefault();
+        navigate("/home");
       }}>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>

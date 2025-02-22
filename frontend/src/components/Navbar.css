@@ -1,5 +1,5 @@
 .navbar {
-  background: linear-gradient(to right, #ff8000, #ff3300); /* Gradient */
+  background: linear-gradient(to right, #ff8000, #ff3300);
   padding: 15px;
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@
 }
 
 .nav-logo {
-  width: 70px; /* Set uniform size */
+  width: 70px;
   height: 70px;
   object-fit: contain;
 }
@@ -32,15 +32,13 @@
   margin-right: 18%;
 }
 
-/* Remove default list styling */
 .nav-links {
-  list-style: none; /* Fix black dot issue */
+  list-style: none;
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-/* Home & About Us buttons styling */
 .nav-links a, .nav-btn {
   background: white;
   color: black;
@@ -50,24 +48,23 @@
   padding: 10px 20px;
   cursor: pointer;
   transition: 0.3s;
-  min-width: 100px; /* Ensures consistency while allowing text adjustment */
-  height: 40px; /* Uniform height */
+  min-width: 100px;
+  height: 40px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  white-space: nowrap; /* Prevents text wrapping */
+  white-space: nowrap;
 }
 
 .nav-links a:hover, .nav-btn:hover {
   background: lightgray;
 }
 
-/* Centering SUVAI word */
 .navbar-brand {
-  flex: 1;  /* Takes available space */
-  text-align: center; /* Centers the text */
+  flex: 1; 
+  text-align: center;
   font-weight: bold;
   font-size: 24px;
   color: white;

@@ -22,24 +22,17 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      
-
-      {/* Hero Section */}
       <div className="hero-section">
         <div className="quote">"Good food is the foundation of genuine happiness."</div>
       </div>
 
-      {/* Explore Section */}
       <div className="Explore">
         Explore the variety of restaurants
       </div>
 
-      {/* Restaurant Section */}
       <div className="restaurant-section">
-        {/* Left Button */}
         <button className="left-btn" onClick={prevRestaurant} disabled={index === 0}>&lt;</button>
-        
-        {/* Restaurant List */}
+
         <div className="restaurant-list">
           {restaurants.slice(index, index + 3).map((restaurant) => (
             <div key={restaurant.id} className="restaurant-card">
@@ -50,7 +43,6 @@ const Home = () => {
           ))}
         </div>
 
-        {/* Right Button */}
         <button className="right-btn" onClick={nextRestaurant} disabled={index === restaurants.length - 3}>&gt;</button>
       </div>
     </div>
