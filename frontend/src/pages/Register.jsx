@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Register.css';
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate(); // Initialize navigate function
 
   return (
@@ -33,4 +33,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default Register;
