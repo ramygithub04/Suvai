@@ -1,48 +1,91 @@
-import React,{ useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Register.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Register.css";
 
-const Register = ({setIsLoggedIn}) => {
-  const [username,setUsername]=useState("");
-  const [email,setEmail]=useState("");
-  const [password,setPassword]=useState("");
+const Register = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    role: "customer",
+    restaurantName: "",
+    location: ""
+  });
+
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
-  const handleRegister = async ()=>{
-    await axios.post("http://localhost:3000/register",{username,email,password})
-    localStorage.setItem("username",username)
-    setIsLoggedIn(true)
-    navigate("/home");
+  // Handle form changes
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(""); // Clear previous errors
+
+    try {
+      const response = await axios.post("http://localhost:3000/register", formData);
+
+      if (response.status === 201) {
+        alert("Registration Successful!");
+        navigate("/"); // Redirect to home page
+      }
+    } catch (error) {
+      console.error("Registration Error:", error.response?.data?.message);
+      setError(error.response?.data?.message || "Registration failed.");
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        navigate("/home");
-      }}>
-      
+    <div className="register-container">
+      <form onSubmit={handleSubmit}>
+        <h2>Register</h2>
+        {error && <p className="error-message">{error}</p>}
+
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Username</label>
-          <input type="String" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username" />
+          <label>Username</label>
+          <input type="text" name="username" className="form-control" value={formData.username} onChange={handleChange} required />
         </div>
+
         <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Email</label>
-          <input type="email" className="form-control" id="exampleInputPassword1" placeholder="Email" />
+          <label>Email</label>
+          <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required />
         </div>
+
         <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Password</label>
-          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+          <label>Password</label>
+          <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
         </div>
-        <div className="form-group form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-          <label className="form-check-label" htmlFor="exampleCheck1">I'm not a robot</label>
+
+        <div className="form-group">
+          <label>Role</label>
+          <select name="role" className="form-control" value={formData.role} onChange={handleChange}>
+            <option value="customer">Customer</option>
+            <option value="admin">Admin</option>
+          </select>
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
+
+        {formData.role === "admin" && (
+          <>
+            <div className="form-group">
+              <label>Restaurant Name</label>
+              <input type="text" name="restaurantName" className="form-control" value={formData.restaurantName} onChange={handleChange} required />
+            </div>
+
+            <div className="form-group">
+              <label>Location</label>
+              <input type="text" name="location" className="form-control" value={formData.location} onChange={handleChange} required />
+            </div>
+          </>
+        )}
+
+        <button type="submit" className="btn-primary">Register</button>
+      </form>
     </div>
   );
-}
+};
 
 export default Register;
