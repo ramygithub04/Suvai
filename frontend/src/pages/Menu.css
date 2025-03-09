@@ -1,51 +1,64 @@
 .menu-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 80px auto 0;
+    background-color: white;
+}
+
+.menu-container h2 {
+    color: #333;
+    margin-bottom: 20px;
     text-align: center;
-    padding: 30px;
 }
 
-.menu-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.menu-card {
-    background: white;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 200px;
+.menu-table th,
+.menu-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-.menu-card img {
-    width: 180px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 10px;
+.menu-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
 }
 
-.menu-card h3 {
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
+.menu-table tbody tr:hover {
+    background-color: #f5f5f5;
 }
 
-.menu-card p {
-    font-size: 14px;
-    color: #666;
-}
-
-.menu-card button {
-    background-color: #ff5722;
-    color: white;
-    padding: 8px;
+.add-to-cart-btn {
+    background-color: #ff4500;  /* Orange color matching your theme */
+    color: rgb(206, 14, 14);
     border: none;
-    border-radius: 5px;
+    padding: 8px 16px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
 }
 
-.menu-card button:hover {
-    background-color: #e64a19;
+.add-to-cart-btn:hover {
+    background-color: #ff5722;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .menu-container {
+        padding: 10px;
+        margin-top: 60px;
+    }
+    
+    .menu-table th,
+    .menu-table td {
+        padding: 8px;
+    }
 }
