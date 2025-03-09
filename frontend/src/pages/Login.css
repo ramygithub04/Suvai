@@ -79,7 +79,7 @@ label {
 }
 
 /* Button Styling */
-.btn-primary {
+.btn_login {
   width: 100%;
   background: #ff4b2b;
   color: white;
@@ -92,7 +92,7 @@ label {
   transition: background 0.3s ease-in-out, transform 0.2s;
 }
 
-.btn-primary:hover {
+.btn_login:hover {
   background: #ff2a00;
   transform: scale(1.05);
 }

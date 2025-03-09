@@ -16,15 +16,13 @@ const Register = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  // Handle form changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
+    setError("");
 
     try {
       const response = await axios.post("http://localhost:3000/register", formData);
@@ -32,13 +30,14 @@ const Register = () => {
       if (response.status === 201) {
         alert("Registration Successful!");
 
-        // Store user data in localStorage
+        // ✅ Store user details in localStorage
         localStorage.setItem("username", formData.username);
         localStorage.setItem("role", formData.role);
 
-        // Navigate to home page and reload to update navbar
+        // ✅ Dispatch custom event to update navbar
+        window.dispatchEvent(new Event("roleChange"));
+
         navigate("/");
-        window.location.reload();
       }
     } catch (error) {
       console.error("Registration Error:", error.response?.data?.message);

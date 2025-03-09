@@ -18,31 +18,32 @@ const Login = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
           });
-      
+    
           if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.error || "Invalid login credentials");
           }
-      
+    
           const data = await response.json();
-          
           alert("Login successful!");
-      
+    
+          // ✅ Store user data and role
           localStorage.setItem("user", JSON.stringify(data));
           localStorage.setItem("role", data.role);
-      
-          // ✅ Notify Navbar to update role state
-          window.dispatchEvent(new Event("storage"));
-      
+    
+          // ✅ Dispatch custom event for navbar update
+          window.dispatchEvent(new Event("roleChange"));
+    
           navigate("/");
-      
+          console.log("Stored Role:", localStorage.getItem("role"));
+
+          
         } catch (err) {
           console.error("Login error:", err.message);
           setError(err.message);
         }
-      };
-      
-  
+    };
+    
 
     return (
         <div className="login-container">
@@ -72,7 +73,7 @@ const Login = () => {
                     />
                 </div>
 
-                <button type="submit">Login</button>
+                <button type="submit" className="btn_login">Login</button>
             </form>
         </div>
     );

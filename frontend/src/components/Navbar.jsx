@@ -9,22 +9,22 @@ const Navbar = () => {
 
   useEffect(() => {
     const updateRole = () => {
-      setRole(localStorage.getItem("role") || "");
+      console.log("Role updated:", localStorage.getItem("role"));
+      setRole(localStorage.getItem("role") || ""); // ✅ Ensure re-render
     };
-  
-    // ✅ Listen for storage changes (including from login)
-    window.addEventListener("storage", updateRole);
-  
+
+    window.addEventListener("roleChange", updateRole);
+
     return () => {
-      window.removeEventListener("storage", updateRole);
+      window.removeEventListener("roleChange", updateRole);
     };
   }, []);
-  
 
   const handleLogout = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("role");
-    setRole(""); // Update state to trigger re-render
+    setRole("");
+    window.dispatchEvent(new Event("roleChange"));
     navigate("/login");
   };
 
@@ -42,7 +42,7 @@ const Navbar = () => {
 
           {role === "admin" ? (
             <>
-              <li><button className="nav-btn" onClick={() => navigate("/add-restaurant")}>Add Restaurant/Product</button></li>
+              <li><button className="nav-btn" onClick={() => navigate("/add-restaurant")}>Add Restaurant</button></li>
               <li><button className="nav-btn" onClick={handleLogout}>Sign Out</button></li>
             </>
           ) : role === "customer" ? (
