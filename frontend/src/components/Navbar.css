@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .navbar-container {
@@ -13,6 +14,7 @@
   padding: 0 20px;
 }
 
+/* Logo Container */
 .logo {
   margin-right: 15px;
 }
@@ -23,33 +25,39 @@
   object-fit: contain;
 }
 
+/* Brand Name - Centered */
 .brand-name {
+  flex-grow: 1; /* Takes up remaining space */
+  text-align: center;
   font-size: 24px;
   font-weight: bold;
   color: white;
-  align-items: center;
-  margin-left: 38%;
-  margin-right: 18%;
 }
 
+/* Navigation Links */
 .nav-links {
   list-style: none;
   display: flex;
   align-items: center;
   gap: 15px;
+  padding: 0;
+  margin: 0;
 }
 
-.nav-links a, .nav-btn {
+/* Buttons & Links */
+.nav-links a,
+.nav-btn {
   background: white;
   color: black;
   font-size: 16px;
+  font-weight: bold;
   border: none;
   border-radius: 8px;
   padding: 10px 20px;
   cursor: pointer;
   transition: 0.3s;
-  min-width: 100px;
-  height: 40px;
+  min-width: 140px; /* Ensures equal button sizes */
+  height: 45px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -58,12 +66,14 @@
   white-space: nowrap;
 }
 
-.nav-links a:hover, .nav-btn:hover {
+.nav-links a:hover,
+.nav-btn:hover {
   background: lightgray;
 }
 
+/* Navbar Brand Styling */
 .navbar-brand {
-  flex: 1; 
+  flex: 1;
   text-align: center;
   font-weight: bold;
   font-size: 24px;
