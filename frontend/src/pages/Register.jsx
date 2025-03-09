@@ -31,7 +31,14 @@ const Register = () => {
 
       if (response.status === 201) {
         alert("Registration Successful!");
-        navigate("/"); // Redirect to home page
+
+        // Store user data in localStorage
+        localStorage.setItem("username", formData.username);
+        localStorage.setItem("role", formData.role);
+
+        // Navigate to home page and reload to update navbar
+        navigate("/");
+        window.location.reload();
       }
     } catch (error) {
       console.error("Registration Error:", error.response?.data?.message);

@@ -7,34 +7,33 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [role, setRole] = useState(localStorage.getItem("role") || "");
 
-  // Listen for storage updates and update role dynamically
   useEffect(() => {
-    const handleStorageChange = () => {
+    const updateRole = () => {
       setRole(localStorage.getItem("role") || "");
     };
-
-    // Listen for storage changes across tabs
-    window.addEventListener("storage", handleStorageChange);
-
+  
+    // ✅ Listen for storage changes (including from login)
+    window.addEventListener("storage", updateRole);
+  
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("storage", updateRole);
     };
   }, []);
+  
 
   const handleLogout = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("role");
-    setRole(""); // Update state immediately
+    setRole(""); // Update state to trigger re-render
     navigate("/login");
   };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <div className="logo">
+        <div className="logo" onClick={() => navigate("/")}>
           <img src={logo} alt="SUVAI Logo" className="nav-logo" />
         </div>
-
         <h1 className="brand-name">SUVAI</h1>
 
         <ul className="nav-links">

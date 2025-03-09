@@ -1,47 +1,81 @@
-import React,{ useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './Login.css';
-import axios from 'axios';
 
-const Login = (setIsLoggedIn) => {
-    const [email,setEmail]=useState("");
-    const [password,setPassword]=useState("");
+const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
-  
-    const handleLogin = async ()=>{
-      try{
-        await axios.post("http://localhost:3000/login",{email,password})
-        localStorage.setItem("username",res.data.username)
-        setIsLoggedIn(true)
-        navigate("/home");
-      } catch(error){
-        alert("Invalid Credentials");
-      }
-    };
 
-  return (
-    <div>
-      <form onSubmit={(e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        navigate("/home");
-      }}>
+        setError("");
       
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+        try {
+          const response = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+      
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || "Invalid login credentials");
+          }
+      
+          const data = await response.json();
+          
+          alert("Login successful!");
+      
+          localStorage.setItem("user", JSON.stringify(data));
+          localStorage.setItem("role", data.role);
+      
+          // ✅ Notify Navbar to update role state
+          window.dispatchEvent(new Event("storage"));
+      
+          navigate("/");
+      
+        } catch (err) {
+          console.error("Login error:", err.message);
+          setError(err.message);
+        }
+      };
+      
+  
+
+    return (
+        <div className="login-container">
+            <form onSubmit={handleLogin}>
+                <h2>Login</h2>
+                {error && <p className="error-message">{error}</p>}
+
+                <div className="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        placeholder="Enter email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        placeholder="Enter password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
         </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Password</label>
-          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-        </div>
-        <div className="form-group form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-          <label className="form-check-label" htmlFor="exampleCheck1">I'm not a robot</label>
-        </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-    </div>
-  );
-}
+    );
+};
 
 export default Login;

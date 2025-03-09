@@ -1,88 +1,71 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors'); // Import CORS
-const User = require('./models/User');
-const bcrypt = require('bcryptjs');
+const express = require("express");
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
+const User = require("./models/User"); // Adjust path as needed
 
 const app = express();
-const PORT = 3000;
-
-// Middleware
 app.use(express.json());
-app.use(cors()); // Enable CORS
+app.use(cors());
 
-// Home route
-app.get('/', (req, res) => {
-    res.send("Welcome to SUVAI");
-});
+// Connect to MongoDB (Replace with your connection string)
+mongoose.connect("mongodb+srv://demomongo123:demomongo123@cluster0.8mt8r.mongodb.net/backend?retryWrites=true&w=majority&appName=Cluster0", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log("MongoDB Connected"))
+  .catch(err => console.error("MongoDB Connection Error:", err));
 
-// Register route
-app.post('/register', async (req, res) => {
-    const { username, email, password, role, restaurantName, location } = req.body;
-    
+/**
+ * ✅ REGISTER ROUTE
+ * - Ensures password is hashed before storing
+ * - Prevents duplicate hashing
+ */
+app.post("/register", async (req, res) => {
     try {
-        // Check if the user already exists
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).json({ message: "User already registered." });
-        }
+        const { username, email, password, role, restaurantName, location } = req.body;
 
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Prepare user data
-        const userData = { username, email, password: hashedPassword, role };
-        
-        // If the user is an admin, add restaurant details
-        if (role === "admin") {
-            if (!restaurantName || !location) {
-                return res.status(400).json({ message: "Restaurant name and location are required for Admins." });
-            }
-            userData.restaurantName = restaurantName;
-            userData.location = location;
-        }
-
-        // Save the user to the database
-        const newUser = new User(userData);
+        // ✅ Don't hash manually, Mongoose will do it
+        const newUser = new User({ username, email, password, role, restaurantName, location });
         await newUser.save();
 
-        res.status(201).json({ message: "User Registered Successfully." });
+        res.status(201).json({ message: "User registered successfully" });
     } catch (err) {
-        console.error("Registration Error:", err);
-        res.status(500).json({ message: "Registration failed. Please try again." });
+        console.error("Signup Error:", err);
+        res.status(500).json({ error: "Server error. Try again later." });
     }
 });
 
-// Login route
-app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    
+
+/**
+ * ✅ LOGIN ROUTE
+ * - Checks hashed password correctly
+ * - Logs password comparison for debugging
+ */
+app.post("/login", async (req, res) => {
     try {
+        const { email, password } = req.body;
         const user = await User.findOne({ email });
-        if (!user || !(await bcrypt.compare(password, user.password))) {
-            return res.status(400).json({ message: "Invalid Credentials" });
-        }
 
-        res.json({
-            message: "Login Successful",
-            username: user.username,
-            role: user.role,
-            restaurantName: user.restaurantName || null,
-            location: user.location || null
-        });
+        if (!user) return res.status(404).json({ error: "User not registered" });
 
+        console.log(`Login Attempt for: ${email}`);
+        console.log(`Stored Hashed Password: ${user.password}`);
+        console.log(`Entered Password: ${password}`);
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        console.log(`Password Match Status: ${isMatch}`);
+
+        if (!isMatch) return res.status(401).json({ error: "Invalid Password" });
+
+        res.status(200).json({ message: "Login successful", username: user.username });
     } catch (err) {
         console.error("Login Error:", err);
-        res.status(500).json({ message: "Login failed. Please try again." });
+        res.status(500).json({ error: "Server error. Try again later." });
     }
 });
 
-// Connect to MongoDB
-mongoose.connect("mongodb+srv://demomongo123:demomongo123@cluster0.8mt8r.mongodb.net/backend?retryWrites=true&w=majority&appName=Cluster0")
-    .then(() => console.log("DB connected successfully"))
-    .catch((err) => console.error("Database connection error:", err));
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT}`);
-});
+// Start Server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
