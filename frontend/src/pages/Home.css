@@ -9,7 +9,7 @@ body {
     background-color: #f8f8f8;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
 }
 
@@ -25,11 +25,12 @@ body {
     z-index: 1000;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: center; 
+    justify-content: space-between;
+    align-items: center;
 }
 
 .hero-section {
-    background: url('background.avif') center/cover ;
+    background: url('background.avif') center/cover;
     height: 250px;
     width: auto;
     display: flex;
@@ -58,7 +59,6 @@ body {
     text-align: center;
     color: black;
     font-style: italic;
-
 }
 
 .restaurant-section {
@@ -68,35 +68,6 @@ body {
     position: relative;
     margin-top: 20px;
     width: 100%;
-}
-
-.nav-button {
-    background-color: #ddd;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.nav-button:hover {
-    background-color: #bbb;
-}
-
-.left-btn {
-    position: absolute;
-    left: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.right-btn {
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .restaurant-list {
@@ -119,6 +90,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .restaurant-card img {
@@ -139,8 +111,57 @@ body {
     color: #666;
 }
 
-.home-container {
+/* Admin Section */
+.admin-section {
     text-align: center;
-    width: 100%;
-    padding-top: 80px;
+    padding: 40px;
+}
+
+.add-btn {
+    background-color: #ff5722;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.add-btn:hover {
+    background-color: #e64a19;
+}
+
+.menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+.menu-card img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.menu-card h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.menu-card p {
+    font-size: 14px;
+    color: #666;
 }
